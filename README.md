@@ -121,6 +121,10 @@ With this setting you can add an additional course edit on / off button to the c
 
 With this setting you can choose the place where the information to which role a user has switched is being displayed. If not checked (default value), the role information will be displayed right beneath the user\'s name in the user menu (like in theme Boost). If checked, this information - together with a link to switch back - will be displayed beneath the course, as this functionality is course related.
 
+#### Fixed to top course navigation and settings
+
+With this setting you can fix the course breadcrumb navigation and the course settings to the top of the page when the user scrolls down. This maximazes the accessibility to these important course functions.
+
 
 ### 4. Tab "Footer Layout Settings"
 

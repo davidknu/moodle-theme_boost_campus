@@ -41,6 +41,7 @@ if ($navdraweropen) {
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $blockshtml = $OUTPUT->blocks('side-pre');
 $hasblocks = strpos($blockshtml, 'data-block=') !== false;
+$breadcrumbtotop = get_config('theme_boost_campus', 'breadcrumbtotop'); // Get value from setting breadcrumbtotop.
 $regionmainsettingsmenu = $OUTPUT->region_main_settings_menu();
 $catchshortcuts = array();
 $catchendkey = get_config('theme_boost_campus', 'catchendkey');
@@ -64,7 +65,8 @@ $templatecontext = [
     'navdraweropen' => $navdraweropen,
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
-    'catchshortcuts' => json_encode($catchshortcuts)
+    'catchshortcuts' => json_encode($catchshortcuts),
+    'breadcrumbtotop' => $breadcrumbtotop
 ];
 
 // MODIDFICATION START.
