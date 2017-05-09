@@ -128,6 +128,7 @@ $string['footnotesetting'] = 'Footnote';
 $string['footnotesetting_desc'] = 'Whatever you add to this textarea will be displayed at the end of the footer on every page that renders the theme standard footer (for the layouts "columns2" and "login"). Content in this area could be for example the copyright, the terms of use and the name of your organisation. <br/> If you want to remove the footnote again, just empty the text area.';
 // ...Nav drawer menu.
 $string['navdrawerheadingsetting'] = 'Nav drawer menu';
+// ...Homepage on top.
 $string['dashboardontopsetting'] = 'Dashboard menu item on top';
 $string['dashboardontopsetting_desc'] = 'By checking this setting the Dashboard menu item will always be located at the top of the nav drawer. By default, this is already the case on every Moodle page except for course pages. There, the current course and its contents are placed on top. This might break user\'s expectations for the placement of the default homepage link.';
 $string['sitehomeontopsetting'] = 'Site home menu item on top';
@@ -136,6 +137,9 @@ $string['userdefinedontopsetting'] = 'User defined homepage on top';
 $string['userdefinedontopsetting_desc'] = 'By checking this setting the Dashboard or Site home menu item (depends on the user\'s preferences) will always be located at the top of the nav drawer. By default, this is already the case on every Moodle page except for course pages. There, the current course and its contents are placed on top. This might break user\'s expectations for the placement of the default homepage link.';
 $string['defaulthomepageontopsetting'] = 'Default homepage on top';
 $string['defaulthomepageontopsetting_desc'] = 'By checking this setting the default homepage link (Dashboard or Site home) will always be located at the top of the nav drawer. By default, this is already the case on every Moodle page except for course pages. There, the current course and its contents are placed on top. This might break user\'s expectations for the placement of the default homepage link.';
+// ...Navdrawer full width on small screens.
+$string['nawdrawerfullwidthsetting'] = 'Nav drawer full width on small screens';
+$string['nawdrawerfullwidthsettings_desc'] = 'By checking this setting you can enlarge the opened nav drawer menu to the full page width on small screens. This may be wanted because on small screens only very few of the main content area in the background is visible. And a full width menu might serve the users\' expectations how menus are displayed on small screens.';
 
 // Design settings.
 $string['designsettings'] = 'Design Settings';

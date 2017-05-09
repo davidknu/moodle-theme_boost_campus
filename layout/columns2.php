@@ -63,6 +63,21 @@ if (get_config('theme_boost_campus', 'catchctrlarrowdown') == true) {
     $catchshortcuts[] = 'ctrlarrowdown';
 }
 // MODIFICATION END.
+// MODIFICATION START: Setting 'showsettingsincourse'.
+// Initialize node variable.
+$node = false;
+// If the setting 'showsettingsincourse' is enabled.
+if (get_config('theme_boost_campus', 'showsettingsincourse') == 'yes') {
+    // Only search for the courseadmin node if we are within a course or a module context.
+    if ($PAGE->context->contextlevel == CONTEXT_COURSE || $PAGE->context->contextlevel == CONTEXT_MODULE) {
+        // Get the course context menu.
+        $node = $PAGE->settingsnav->find('courseadmin', navigation_node::TYPE_COURSE);
+    }
+}
+// MODIFICATION END.
+// MODIFICATION START: Setting 'nawdrawerfullwidth'.
+$navdrawerfullwidth = get_config('theme_boost_campus', 'nawdrawerfullwidth');
+// MODIFICATION END.
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
@@ -75,6 +90,8 @@ $templatecontext = [
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
     // MODIFICATION START: Add Boost Campus realated values to the template context.
     'catchshortcuts' => json_encode($catchshortcuts),
+    'node' => $node,
+    'nawdrawerfullwidth' => $navdrawerfullwidth
     // MODIFICATION END.
 ];
 

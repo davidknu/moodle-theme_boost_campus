@@ -378,6 +378,21 @@ if ($ADMIN->fulltree) {
     $description = get_string('footnotesetting_desc', 'theme_boost_campus', null, true);
     $setting = new admin_setting_confightmleditor($name, $title, $description, '');
     $setting->set_updatedcallback('theme_reset_all_caches');
+
+    // Settings title to group nav drawer related settings together with a common heading. We don't want a description here.
+    $name = 'theme_boost_campus/navdrawerheading';
+    $title = get_string('navdrawerheadingsetting', 'theme_boost_campus', null, true);
+    $setting = new admin_setting_heading($name, $title, null);
+    $page->add($setting);
+
+    // Set navdrawer to full width on small screens when opened.
+    $name = 'theme_boost_campus/nawdrawerfullwidth';
+    $title = get_string('nawdrawerfullwidthsetting', 'theme_boost_campus', null, true);
+    $description = get_string('nawdrawerfullwidthsettings_desc', 'theme_boost_campus', null, true);
+    $setting = new admin_setting_configcheckbox($name, $title, $description, 'no', 'yes', 'no' ); // Overriding default
+        // values yes = 1 and no = 0 because of the use of empty() in theme_boost_campus_get_pre_scss() (lib.php). Default 0 value
+        // would not write the variable to scss that could cause the scss to crash if used in that file. See MDL-58376.
+    $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
     // Settings title to group navdrawer related settings together with a common heading. We don't want a description here.

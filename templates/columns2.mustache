@@ -45,7 +45,8 @@
         "hasblocks":true,
         "navdraweropen":true,
         "regionmainsettingsmenu": "",
-        "hasregionmainsettingsmenu": false
+        "hasregionmainsettingsmenu": false,
+        "nawdrawerfullwidth": yes
     }
 }}
 {{! MODIFICATION:
@@ -54,6 +55,8 @@
     * Require own javascript module for back to top button functionality
     * If setting "showsettingsincourse" is enabled, then render course context menu from theme_boost_campus/settings_link_page template
       and use the equivalent own javascript "incoursesettings".
+    * Use additional JavaScript functionality if the setting nawdrawerfullwidth is enabled. We write this here, so we do not
+      have to override the drawer.js file for this small addition.
 }}
 {{{ output.doctype }}}
 <html {{{ output.htmlattributes }}}>
@@ -124,4 +127,58 @@ require(['theme_boost_campus/catchshortcuts'], function(mod) {
     mod.init();
     });
 {{/node}}
+{{#nawdrawerfullwidth}}
+    require(['jquery'], function($) {
+        // Add special event listener to force the nav drawer to close in full width mode
+        // if a nav drawer menu item is clicked. On the one hand section links are only anchors on the same page and so there is
+        // no page refresh that would load the new page and close the menu. If it does not close, the user does not know
+        // that something changed in the background because he cannot see it. So we force the closing. On the other hand the
+        // closing action would take a long time period until the new course or other page is loaded. So we also force the menu
+        // o be closed.
+
+        var trigger = $('button[data-action=toggle-drawer]');
+        var drawer = $(document.getElementById('nav-drawer'));
+
+        // Only check if user is using a small screen
+        if ($(document).width() < 768) {
+            // If user clicks on a list-group-item.
+            $('#nav-drawer .list-group-item').click(function() {
+                // Nav drawer is currently expanded.
+                if($('body').hasClass('drawer-open-left')) {
+                    // All required actions on DOM elements to close the nav drawer.
+                    $('body').removeClass('drawer-open-left');
+                    trigger.attr('aria-expanded', 'false');
+                    drawer.attr('aria-hidden', 'true').addClass('closed');
+                    // Set nav drawer open preference status to closed.
+                    M.util.set_user_preference('drawer-open-nav', false);
+                }
+            });
+            // If user clicks on the hamburger menu button to expand the menu again.
+            $('header button[data-action=toggle-drawer]').click(function() {
+                console.log("Button gedrückt!");
+                //  and the nav drawer is closed.
+                 if (!($('body').hasClass('drawer-open-left'))) {
+                    // All required actions on DOM elements to close the nav drawer.
+                    $('body').addClass('drawer-open-left');
+                    trigger.attr('aria-expanded', 'true');
+                    drawer.attr('aria-hidden', 'false').removeClass('closed');
+                    // Set nav drawer open preference status to opened.
+                    M.util.set_user_preference('drawer-open-nav', true);
+                } else if (($('body').hasClass('drawer-open-left'))) {
+                    // Button is clicked and menu is expanded => menu needs to be closed again.
+                    // All required actions on DOM elements to close the nav drawer.
+                    $('body').removeClass('drawer-open-left');
+                    trigger.attr('aria-expanded', 'false');
+                    drawer.attr('aria-hidden', 'true').addClass('closed');
+                    // Set nav drawer open preference status to closed.
+                    M.util.set_user_preference('drawer-open-nav', false);
+                }
+            });
+        } else {
+            require(['theme_boost/drawer'], function(mod) {
+                mod.init();
+            });
+        }
+    });
+{{/nawdrawerfullwidth}}
 {{/js}}
