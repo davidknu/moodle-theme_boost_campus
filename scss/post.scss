@@ -404,15 +404,15 @@ body.loginbackgroundimage {
         .activity .activityinstance .dimmed .activityicon {
             filter: grayscale(100%);
         }
-        /* Make availability info more eye catching. */
+        /* Improve design of availability conditions. */
         .availabilityinfo {
-            @extend .label;
-            font-weight: 400;
-            font-size: .9rem;
-            display: block;
-            /* Change the color of links within the availability to the same color of the text. */
-            a {
-                color: #fff;
+            .tag {
+                padding: 0.4rem;
+            }
+            /* Move availability info text to a new line. */
+            .newline {
+                display: block;
+                font-size: 0.9rem;
             }
         }
         /* Add border to descripion text to differ it from module content. */
