@@ -6,6 +6,7 @@ Changes
 
 ### Unreleased
 
+* 2017-12-05 - Synchronized overwritten core_renderer function favicon() with core changes.
 * 2017-12-05 - Improved design of in course settings slightly.
 * 2017-12-05 - Prepare compatibility for Moodle 3.3, no functionality change.
 * 2017-12-05 - Added Workaround to travis.yml for fixing Behat tests with TravisCI.
